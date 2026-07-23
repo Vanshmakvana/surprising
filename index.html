@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Hetvi! 🎉</title>
+  <meta name="description" content="A special birthday celebration page for Hetvi Rathod — wishing her joy, success, and a wonderful year ahead!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #f5c842;
+      --gold-light:  #ffe98a;
+      --indigo:      #5c3fd8;
+      --indigo-dark: #3b22a1;
+      --purple:      #9b59d0;
+      --pink:        #e879a8;
+      --bg-start:    #0e0b2e;
+      --bg-mid:      #160f3a;
+      --bg-end:      #0a081f;
+      --glass-bg:    rgba(255,255,255,0.06);
+      --glass-border:rgba(255,255,255,0.14);
+      --text-primary:#f0ecff;
+      --text-soft:   #b8b0e0;
+      --radius-xl:   24px;
+      --radius-lg:   16px;
+      --radius-md:   10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+      min-height: 100vh;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* ── CANVAS BACKGROUNDS ── */
+    #particleCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 90px 20px 60px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,200,66,0.15);
+      border: 1px solid rgba(245,200,66,0.35);
+      border-radius: 40px;
+      padding: 8px 22px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #fff 20%, var(--gold-light) 50%, var(--pink) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 18px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--text-soft);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.75;
+    }
+
+    .hero-date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(92,63,216,0.4), rgba(155,89,208,0.4));
+      border: 1px solid rgba(155,89,208,0.5);
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #d8cfff;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-date-pill .icon { font-size: 1.3rem; }
+
+    /* ── GLASS CARD ── */
+    .glass-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 40px 44px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--purple), transparent);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(92,63,216,0.25);
+    }
+
+    /* ── CAREER CARD ── */
+    .career-card { animation-delay: 0.2s; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    .career-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(120deg, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .career-role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      border-radius: var(--radius-md);
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 24px rgba(92,63,216,0.4);
+    }
+
+    .career-company {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      line-height: 1.65;
+    }
+
+    .career-company strong { color: var(--text-primary); }
+
+    .career-msg {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.8;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+      font-style: italic;
+    }
+
+    .career-stars {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 1.6rem;
+      opacity: 0.55;
+      animation: spin-slow 10s linear infinite;
+    }
+
+    /* ── FRIENDSHIP CARD ── */
+    .friendship-card { animation-delay: 0.35s; }
+
+    .friendship-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3.5vw, 1.85rem);
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .friendship-msg {
+      font-size: 0.975rem;
+      color: var(--text-soft);
+      line-height: 1.85;
+      margin-bottom: 28px;
+    }
+
+    .friendship-msg .highlight {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown-section { animation-delay: 0.45s; }
+
+    .countdown-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .countdown-box {
+      background: rgba(92,63,216,0.2);
+      border: 1px solid rgba(155,89,208,0.3);
+      border-radius: var(--radius-lg);
+      padding: 16px 22px;
+      text-align: center;
+      min-width: 80px;
+      transition: transform 0.25s;
+    }
+
+    .countdown-box:hover { transform: scale(1.07); }
+
+    .countdown-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+    }
+
+    .countdown-lbl {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .countdown-msg {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      font-style: italic;
+    }
+
+    /* ── SURPRISE BTN ── */
+    .surprise-wrap {
+      text-align: center;
+      margin: 14px 0 4px;
+    }
+
+    .surprise-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--indigo), var(--purple), var(--pink));
+      background-size: 200% 200%;
+      border: none;
+      border-radius: 50px;
+      padding: 16px 38px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 32px rgba(155,89,208,0.45);
+      animation: gradient-shift 4s ease infinite;
+    }
+
+    .surprise-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 14px 44px rgba(155,89,208,0.6);
+    }
+
+    /* ── POPUP OVERLAY ── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,8,31,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .overlay.active { opacity: 1; pointer-events: all; }
+
+    .popup-card {
+      background: linear-gradient(135deg, #1a1250, #2a1860);
+      border: 1px solid rgba(245,200,66,0.3);
+      border-radius: var(--radius-xl);
+      padding: 48px 44px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      transform: translateY(40px) scale(0.96);
+      transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(245,200,66,0.08);
+    }
+
+    .overlay.active .popup-card { transform: translateY(0) scale(1); }
+
+    .popup-emoji {
+      font-size: 3.5rem;
+      margin-bottom: 18px;
+      display: block;
+      animation: bounce 1s ease infinite alternate;
+    }
+
+    .popup-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #fff, var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .popup-msg {
+      font-size: 0.96rem;
+      color: var(--text-soft);
+      line-height: 1.85;
+      margin-bottom: 30px;
+    }
+
+    .popup-close {
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      border: none;
+      border-radius: 50px;
+      padding: 12px 34px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 24px rgba(92,63,216,0.4);
+    }
+
+    .popup-close:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 32px rgba(92,63,216,0.55);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 30px 0 10px;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+      opacity: 0.6;
+      animation: fadeUp 1s ease 0.6s both;
+    }
+
+    /* ── CONFETTI CANVAS ── */
+    #confettiCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 200;
+    }
+
+    /* ── KEYFRAME ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245,200,66,0.2); }
+      50%       { box-shadow: 0 0 20px 6px rgba(245,200,66,0.12); }
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes gradient-shift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-10px); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 580px) {
+      .glass-card { padding: 28px 22px; }
+      .popup-card { padding: 36px 24px; }
+      .countdown-box { min-width: 66px; padding: 12px 14px; }
+      .countdown-num { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Ambient Particle Background -->
+<canvas id="particleCanvas" aria-hidden="true"></canvas>
+<!-- Confetti Canvas (shown on surprise) -->
+<canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+<!-- ════════════════ BIRTHDAY SURPRISE POPUP ════════════════ -->
+<div class="overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+  <div class="popup-card">
+    <span class="popup-emoji" aria-hidden="true">🎂</span>
+    <h2 class="popup-title" id="popupTitle">Here's to You, Hetvi!</h2>
+    <p class="popup-msg">
+      May this birthday mark the beginning of your most extraordinary chapter yet. 🌟<br><br>
+      You've stepped into the tech world with grace and courage — a
+      <strong style="color:#ffe98a;">Software Intern</strong> today,
+      a tech visionary tomorrow. The journey is just beginning, and the best is truly ahead of you.<br><br>
+      Wishing you a year overflowing with
+      <span style="color:#f5c842;font-weight:600;">joy, growth, adventures</span>,
+      and all the things that make your heart smile. <strong>Happy Birthday!</strong> 🥳
+    </p>
+    <button class="popup-close" id="popupCloseBtn" onclick="closePopup()">
+      Close &amp; Celebrate 🎊
+    </button>
+  </div>
+</div>
+
+<!-- ════════════════ MAIN PAGE ════════════════ -->
+<div class="page-wrapper">
+
+  <!-- ── HERO ── -->
+  <section class="hero" aria-label="Birthday greeting">
+    <div class="hero-badge" aria-label="Special day badge">
+      <span aria-hidden="true">🎂</span> Special Day &nbsp;·&nbsp; July 26
+    </div>
+    <h1 class="hero-title">Happy Birthday,<br>Hetvi Rathod! 🎉</h1>
+    <p class="hero-sub">
+      Wishing you a day as brilliant, warm, and wonderful as you truly are. ✨
+    </p>
+    <div class="hero-date-pill" aria-label="Date of birth: July 26, 2006">
+      <span class="icon" aria-hidden="true">🗓️</span>
+      <span>July 26, 2006</span>
+      <span class="icon" aria-hidden="true">✨</span>
+    </div>
+  </section>
+
+  <!-- ── CAREER MILESTONE CARD ── -->
+  <article class="glass-card career-card" aria-label="Career milestone section">
+    <span class="career-stars" aria-hidden="true">✦</span>
+    <div class="section-label" aria-hidden="true">🚀 Career Milestone</div>
+    <h2 class="career-title">Congratulations on Your New Role! 🎊</h2>
+    <div class="career-role-badge">
+      <span aria-hidden="true">💼</span> Software Intern
+    </div>
+    <p class="career-company">
+      <strong>Truerize IQ Strategic Solutions Pvt Ltd</strong><br>
+      <span aria-hidden="true">📍</span> Bengaluru, Karnataka
+    </p>
+    <blockquote class="career-msg">
+      "Landing your first tech role is no small feat — it's the result of your dedication,
+      your curiosity, and your belief in yourself. You've officially stepped through the door
+      of the tech world, and the world inside is waiting to be shaped by you.
+      Here's to an incredible journey ahead — may every line of code you write be a step
+      closer to your dreams. Keep shining, Hetvi! 💫"
+    </blockquote>
+  </article>
+
+  <!-- ── FRIENDSHIP MESSAGE CARD ── -->
+  <article class="glass-card friendship-card" aria-label="Friendship message">
+    <div class="section-label" aria-hidden="true">💜 A Special Friendship</div>
+    <h2 class="friendship-title">Some Friendships Are Just Meant to Be ✨</h2>
+    <p class="friendship-msg">
+      Life has a funny way of bringing the right people back together at exactly the right time.
+      After a gap of busy semesters and miles in between,
+      <span class="highlight">a simple reconnection</span> reminded us that real friendships
+      never truly fade — they just wait for the perfect moment to bloom again. 🌸
+      <br><br>
+      Here's to late-night conversations, shared dreams, and all the memories we're yet to make.
+      You deserve every bit of happiness this world has to offer, and more.
+      <span class="highlight">Happy Birthday, Hetvi!</span> May this year be your most beautiful one yet. 🥂
+    </p>
+  </article>
+
+  <!-- ── COUNTDOWN + SURPRISE ── -->
+  <article class="glass-card countdown-section" aria-label="Birthday countdown and surprise button">
+    <div class="section-label" aria-hidden="true">⏳ Countdown to Your Day</div>
+    <p class="countdown-title" id="countdownTitle">Loading countdown…</p>
+    <div class="countdown-grid" id="countdownGrid" aria-live="polite">
+      <div class="countdown-box">
+        <span class="countdown-num" id="cdDays">--</span>
+        <span class="countdown-lbl">Days</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="cdHours">--</span>
+        <span class="countdown-lbl">Hours</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="cdMins">--</span>
+        <span class="countdown-lbl">Mins</span>
+      </div>
+      <div class="countdown-box">
+        <span class="countdown-num" id="cdSecs">--</span>
+        <span class="countdown-lbl">Secs</span>
+      </div>
+    </div>
+    <p class="countdown-msg" id="countdownMsg"></p>
+
+    <div class="surprise-wrap" style="margin-top:32px;">
+      <button class="surprise-btn" id="surpriseBtn" onclick="triggerSurprise()">
+        <span aria-hidden="true">🎁</span> Click for a Birthday Surprise!
+      </button>
+    </div>
+  </article>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" aria-label="Page footer">
+    Made with 💜 &nbsp;·&nbsp; For Hetvi, on her special day &nbsp;·&nbsp; July 26 &nbsp;🎂
+  </footer>
+
+</div><!-- end .page-wrapper -->
+
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
+<script>
+  /* ========== 1. AMBIENT PARTICLE BACKGROUND ========== */
+  (function initParticles() {
+    var canvas = document.getElementById('particleCanvas');
+    var ctx    = canvas.getContext('2d');
+    var W, H, particles = [];
+
+    function rand(a, b) { return Math.random() * (b - a) + a; }
+
+    function resize() {
+      W = canvas.width  = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function spawnParticles(n) {
+      particles = [];
+      var palette = ['#f5c842','#9b59d0','#e879a8','#5c3fd8','#ffffff'];
+      for (var i = 0; i < n; i++) {
+        particles.push({
+          x: rand(0, W), y: rand(0, H),
+          r: rand(0.6, 2.2),
+          dx: rand(-0.25, 0.25), dy: rand(-0.25, 0.25),
+          alpha: rand(0.2, 0.75),
+          color: palette[Math.floor(rand(0, palette.length))]
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle   = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+        p.x += p.dx;  p.y += p.dy;
+        if (p.x < 0) p.x = W;  if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H;  if (p.y > H) p.y = 0;
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    spawnParticles(130);
+    draw();
+    window.addEventListener('resize', function() { resize(); spawnParticles(130); });
+  })();
+
+  /* ========== 2. LIVE COUNTDOWN TIMER ========== */
+  (function tickCountdown() {
+    var now      = new Date();
+    var year     = now.getFullYear();
+    var birthday = new Date(year, 6, 26, 0, 0, 0); // July = month index 6
+
+    // If July 26 already passed this year, count down to next year
+    if (now > birthday) birthday.setFullYear(year + 1);
+
+    var diff  = birthday - now;
+    var days  = Math.floor(diff / 86400000);
+    var hrs   = Math.floor((diff % 86400000) / 3600000);
+    var mins  = Math.floor((diff % 3600000)  / 60000);
+    var secs  = Math.floor((diff % 60000)    / 1000);
+
+    var isToday = (now.getMonth() === 6 && now.getDate() === 26);
+
+    var titleEl = document.getElementById('countdownTitle');
+    var gridEl  = document.getElementById('countdownGrid');
+    var msgEl   = document.getElementById('countdownMsg');
+
+    if (isToday) {
+      titleEl.textContent  = "🎉 Today is Hetvi's Birthday! 🎉";
+      msgEl.textContent    = "Wishing you the most magical day ever, Hetvi! 🌟";
+      gridEl.style.display = 'none';
+    } else {
+      titleEl.textContent  = "Time until Hetvi's next birthday 🎂";
+      msgEl.textContent    = "…tick tock, the celebration is coming! 🥳";
+      gridEl.style.display = 'flex';
+      document.getElementById('cdDays').textContent  = String(days).padStart(2, '0');
+      document.getElementById('cdHours').textContent = String(hrs).padStart(2, '0');
+      document.getElementById('cdMins').textContent  = String(mins).padStart(2, '0');
+      document.getElementById('cdSecs').textContent  = String(secs).padStart(2, '0');
+    }
+
+    setTimeout(tickCountdown, 1000);
+  })();
+
+  /* ========== 3. CONFETTI ENGINE ========== */
+  var cCanvas = document.getElementById('confettiCanvas');
+  var cCtx    = cCanvas.getContext('2d');
+  cCanvas.width  = window.innerWidth;
+  cCanvas.height = window.innerHeight;
+
+  window.addEventListener('resize', function() {
+    cCanvas.width  = window.innerWidth;
+    cCanvas.height = window.innerHeight;
+  });
+
+  var confettiPieces  = [];
+  var confettiRunning = false;
+
+  function launchConfetti() {
+    var colors = ['#f5c842','#e879a8','#9b59d0','#5c3fd8','#ffffff','#ff6b6b','#4ecdc4','#ffe98a'];
+    confettiPieces = [];
+    for (var i = 0; i < 180; i++) {
+      confettiPieces.push({
+        x:     Math.random() * cCanvas.width,
+        y:    -Math.random() * cCanvas.height * 0.5,
+        w:     Math.random() * 10 + 4,
+        h:     Math.random() * 5  + 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speed: Math.random() * 4  + 2,
+        angle: Math.random() * Math.PI * 2,
+        spin:  (Math.random() - 0.5) * 0.15,
+        drift: (Math.random() - 0.5) * 1.5,
+        alpha: 1
+      });
+    }
+    if (!confettiRunning) animateConfetti();
+  }
+
+  function animateConfetti() {
+    confettiRunning = true;
+    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+    for (var i = 0; i < confettiPieces.length; i++) {
+      var p = confettiPieces[i];
+      p.y     += p.speed;
+      p.x     += p.drift;
+      p.angle += p.spin;
+      if (p.y > cCanvas.height + 20) p.alpha = Math.max(0, p.alpha - 0.04);
+      cCtx.save();
+      cCtx.translate(p.x, p.y);
+      cCtx.rotate(p.angle);
+      cCtx.globalAlpha = p.alpha;
+      cCtx.fillStyle   = p.color;
+      cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      cCtx.restore();
+    }
+    // Remove fully transparent pieces
+    confettiPieces = confettiPieces.filter(function(p) { return p.alpha > 0; });
+
+    if (confettiPieces.length > 0) {
+      requestAnimationFrame(animateConfetti);
+    } else {
+      confettiRunning = false;
+      cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+    }
+  }
+
+  /* ========== 4. SURPRISE BUTTON & POPUP ========== */
+  function triggerSurprise() {
+    launchConfetti();
+    document.getElementById('popupOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    // Focus the close button for accessibility
+    setTimeout(function() {
+      document.getElementById('popupCloseBtn').focus();
+    }, 480);
+  }
+
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+    document.getElementById('surpriseBtn').focus();
+  }
+
+  // Close on backdrop click
+  document.getElementById('popupOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePopup();
+  });
+
+  /* ========== 5. SCROLL FADE-IN (Intersection Observer) ========== */
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.glass-card').forEach(function(card) {
+      card.style.animationPlayState = 'paused';
+      observer.observe(card);
+    });
+  }
+</script>
+</body>
+</html>
