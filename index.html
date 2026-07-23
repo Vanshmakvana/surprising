@@ -245,8 +245,459 @@
       font-weight: 600;
     }
 
+    /* ════════════════════════════════════════
+       ── CAKE & CANDLE SECTION ──
+    ════════════════════════════════════════ */
+    .candle-section {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 50px 44px 44px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      animation: fadeUp 0.9s ease 0.55s both;
+    }
+
+    .candle-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--pink), var(--gold), var(--purple), transparent);
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      opacity: 0.5;
+    }
+
+    .candle-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 40px;
+    }
+
+    /* ── CAKE SVG CONTAINER ── */
+    .cake-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .cake-scene {
+      position: relative;
+      width: 260px;
+      margin: 0 auto 28px;
+      user-select: none;
+    }
+
+    /* CSS-drawn birthday cake */
+    .cake-body {
+      position: relative;
+      width: 260px;
+    }
+
+    /* Top tier */
+    .cake-tier-top {
+      position: relative;
+      width: 160px;
+      height: 60px;
+      background: linear-gradient(135deg, #e879a8 0%, #c954a0 100%);
+      border-radius: 12px 12px 0 0;
+      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(232,121,168,0.4);
+      overflow: visible;
+    }
+
+    .cake-tier-top::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 20px;
+      background: linear-gradient(to right, #f09ec8, #e879a8, #f09ec8);
+      border-radius: 50px;
+      box-shadow: 0 -4px 12px rgba(232,121,168,0.3);
+    }
+
+    /* frosting drips on top tier */
+    .cake-tier-top::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0; right: 0;
+      height: 18px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='18'%3E%3Cpath d='M0 0 Q10 18 20 5 Q30 18 40 5 Q50 18 60 5 Q70 18 80 5 Q90 18 100 5 Q110 18 120 5 Q130 18 140 5 Q150 18 160 0Z' fill='%23f0b0d0'/%3E%3C/svg%3E") repeat-x;
+      background-size: 160px 18px;
+    }
+
+    /* Name strip on top tier */
+    .cake-name-strip {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      white-space: nowrap;
+      letter-spacing: 0.5px;
+    }
+
+    /* Middle tier */
+    .cake-tier-mid {
+      position: relative;
+      width: 220px;
+      height: 72px;
+      background: linear-gradient(135deg, #9b59d0 0%, #7b3bb0 100%);
+      border-radius: 4px;
+      margin: 0 auto;
+      box-shadow: 0 6px 24px rgba(155,89,208,0.4);
+      overflow: visible;
+    }
+
+    .cake-tier-mid::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 22px;
+      background: linear-gradient(to right, #b87ee0, #9b59d0, #b87ee0);
+      border-radius: 50px;
+      box-shadow: 0 -4px 12px rgba(155,89,208,0.3);
+    }
+
+    .cake-tier-mid::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0; right: 0;
+      height: 18px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='18'%3E%3Cpath d='M0 0 Q11 18 22 5 Q33 18 44 5 Q55 18 66 5 Q77 18 88 5 Q99 18 110 5 Q121 18 132 5 Q143 18 154 5 Q165 18 176 5 Q187 18 198 5 Q209 18 220 0Z' fill='%23c590e8'/%3E%3C/svg%3E") repeat-x;
+      background-size: 220px 18px;
+    }
+
+    /* polka-dots decoration on middle tier */
+    .cake-dots {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    .cake-dots span {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      box-shadow: 0 0 6px rgba(255,255,255,0.4);
+    }
+
+    /* Bottom tier */
+    .cake-tier-bot {
+      position: relative;
+      width: 260px;
+      height: 84px;
+      background: linear-gradient(135deg, #5c3fd8 0%, #3b22a1 100%);
+      border-radius: 4px 4px 16px 16px;
+      margin: 0 auto;
+      box-shadow: 0 10px 36px rgba(92,63,216,0.5);
+      overflow: visible;
+    }
+
+    .cake-tier-bot::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 26px;
+      background: linear-gradient(to right, #7a60e0, #5c3fd8, #7a60e0);
+      border-radius: 50px;
+      box-shadow: 0 -4px 12px rgba(92,63,216,0.3);
+    }
+
+    .cake-tier-bot::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0; right: 0;
+      height: 20px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='20'%3E%3Cpath d='M0 0 Q13 20 26 6 Q39 20 52 6 Q65 20 78 6 Q91 20 104 6 Q117 20 130 6 Q143 20 156 6 Q169 20 182 6 Q195 20 208 6 Q221 20 234 6 Q247 20 260 0Z' fill='%237a60e0'/%3E%3C/svg%3E") repeat-x;
+      background-size: 260px 20px;
+    }
+
+    /* Stars / sparkle decorations on bottom tier */
+    .cake-stars-dec {
+      position: absolute;
+      bottom: 18px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 1rem;
+    }
+
+    /* Cake plate */
+    .cake-plate {
+      width: 290px;
+      height: 18px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.08));
+      border-radius: 0 0 50% 50% / 0 0 100% 100%;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    /* ── CANDLE on cake ── */
+    .candle-on-cake {
+      position: absolute;
+      top: -70px;               /* sits on top tier */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+    }
+
+    /* Flame wrapper (outer glow) */
+    .flame-outer {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      margin-bottom: 2px;
+      transition: opacity 0.3s ease;
+    }
+
+    .flame-outer.blown { opacity: 0; }
+
+    .flame-shape {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 26px;
+      background: radial-gradient(ellipse at 50% 80%, #fff 0%, #ffe98a 30%, #f5a623 60%, #e87b3d 80%, transparent 100%);
+      border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+      animation: flicker 0.18s ease-in-out infinite alternate;
+      box-shadow: 0 0 14px 6px rgba(245,166,35,0.55), 0 0 28px 10px rgba(245,166,35,0.25);
+    }
+
+    .flame-inner {
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 12px;
+      background: radial-gradient(ellipse at 50% 80%, #fff 0%, #ffe98a 70%, transparent 100%);
+      border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+      animation: flicker 0.22s ease-in-out infinite alternate-reverse;
+    }
+
+    /* Smoke puffs after blow */
+    .smoke-puff {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .smoke-puff span {
+      display: block;
+      width: 8px;
+      height: 8px;
+      background: rgba(200,200,220,0.5);
+      border-radius: 50%;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      opacity: 0;
+      transform: translateX(-50%) scale(0);
+    }
+
+    .smoke-puff.active span:nth-child(1) { animation: smokePuff 1.4s 0.0s ease-out forwards; }
+    .smoke-puff.active span:nth-child(2) { animation: smokePuff 1.4s 0.2s ease-out forwards; margin-left: -5px; }
+    .smoke-puff.active span:nth-child(3) { animation: smokePuff 1.4s 0.4s ease-out forwards; margin-left:  5px; }
+
+    @keyframes smokePuff {
+      0%   { opacity: 0.8; transform: translateX(-50%) scale(0.5) translateY(0); }
+      100% { opacity: 0;   transform: translateX(-50%) scale(2.5) translateY(-40px); }
+    }
+
+    /* Candle body */
+    .candle-body {
+      width: 14px;
+      height: 44px;
+      background: linear-gradient(to bottom, #ffe98a 0%, #f5c842 40%, #e0a828 100%);
+      border-radius: 4px 4px 2px 2px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(245,200,66,0.4), inset -2px 0 4px rgba(0,0,0,0.1);
+    }
+
+    /* melted wax drip */
+    .candle-body::after {
+      content: '';
+      position: absolute;
+      top: 4px; right: -3px;
+      width: 7px;
+      height: 12px;
+      background: rgba(255,233,138,0.7);
+      border-radius: 0 4px 4px 4px;
+      transform: rotate(8deg);
+    }
+
+    /* Candle wick */
+    .candle-wick {
+      width: 2px;
+      height: 8px;
+      background: #333;
+      border-radius: 2px;
+    }
+
+    /* ── BLOW CONTROLS ── */
+    .blow-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .blow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      background-size: 200% 200%;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s;
+      box-shadow: 0 8px 28px rgba(232,121,168,0.45);
+      animation: gradient-shift 3s ease infinite;
+    }
+
+    .blow-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 12px 36px rgba(232,121,168,0.6);
+    }
+
+    .blow-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+      transform: none;
+    }
+
+    .blow-hint {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      font-style: italic;
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    /* Mic status indicator */
+    .mic-indicator {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      padding: 6px 14px;
+      background: rgba(92,63,216,0.15);
+      border: 1px solid rgba(92,63,216,0.3);
+      border-radius: 50px;
+    }
+
+    .mic-indicator.visible { display: flex; }
+
+    .mic-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ecdc4;
+      animation: mic-blink 1s ease-in-out infinite;
+    }
+
+    @keyframes mic-blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.3; }
+    }
+
+    /* ── WISH REVEAL ── */
+    .wish-reveal {
+      margin-top: 28px;
+      padding: 24px 28px;
+      background: linear-gradient(135deg, rgba(245,200,66,0.1), rgba(155,89,208,0.1));
+      border: 1px solid rgba(245,200,66,0.25);
+      border-radius: var(--radius-lg);
+      max-width: 420px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .wish-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    .wish-reveal p {
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      line-height: 1.85;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+    }
+
     /* ── COUNTDOWN ── */
-    .countdown-section { animation-delay: 0.45s; }
+    .countdown-section { animation-delay: 0.65s; }
 
     .countdown-title {
       font-size: 0.9rem;
@@ -420,7 +871,7 @@
       color: var(--text-soft);
       font-size: 0.82rem;
       opacity: 0.6;
-      animation: fadeUp 1s ease 0.6s both;
+      animation: fadeUp 1s ease 0.8s both;
     }
 
     /* ── CONFETTI CANVAS ── */
@@ -464,12 +915,23 @@
       to   { transform: translateY(-10px); }
     }
 
+    @keyframes flicker {
+      0%   { transform: translateX(-50%) scaleX(1)   scaleY(1)   rotate(-1deg); }
+      100% { transform: translateX(-50%) scaleX(0.88) scaleY(1.06) rotate(1deg); }
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 580px) {
-      .glass-card { padding: 28px 22px; }
-      .popup-card { padding: 36px 24px; }
-      .countdown-box { min-width: 66px; padding: 12px 14px; }
-      .countdown-num { font-size: 1.7rem; }
+      .glass-card     { padding: 28px 22px; }
+      .candle-section { padding: 40px 20px 36px; }
+      .popup-card     { padding: 36px 24px; }
+      .countdown-box  { min-width: 66px; padding: 12px 14px; }
+      .countdown-num  { font-size: 1.7rem; }
+      .cake-scene     { width: 220px; }
+      .cake-tier-top  { width: 130px; }
+      .cake-tier-mid  { width: 180px; }
+      .cake-tier-bot  { width: 220px; }
+      .cake-plate     { width: 245px; }
     }
   </style>
 </head>
@@ -477,7 +939,7 @@
 
 <!-- Ambient Particle Background -->
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
-<!-- Confetti Canvas (shown on surprise) -->
+<!-- Confetti Canvas (shown on surprise / candle blow) -->
 <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
 <!-- ════════════════ BIRTHDAY SURPRISE POPUP ════════════════ -->
@@ -487,7 +949,7 @@
     <h2 class="popup-title" id="popupTitle">Here's to You, Hetvi!</h2>
     <p class="popup-msg">
       May this birthday mark the beginning of your most extraordinary chapter yet. 🌟<br><br>
-      You've stepped into the tech world with grace and courage — a
+      You've stepped into the tech world with grace and courage —
       <strong style="color:#ffe98a;">Software Intern</strong> today,
       a tech visionary tomorrow. The journey is just beginning, and the best is truly ahead of you.<br><br>
       Wishing you a year overflowing with
@@ -521,7 +983,7 @@
 
   <!-- ── CAREER MILESTONE CARD ── -->
   <article class="glass-card career-card" aria-label="Career milestone section">
-    
+
     <div class="section-label" aria-hidden="true">🚀 Career Milestone</div>
     <h2 class="career-title">Congratulations on Your New Role! 🎊</h2>
     <div class="career-role-badge">
@@ -545,26 +1007,87 @@
     <div class="section-label" aria-hidden="true">A Special Friendship</div>
     <h2 class="friendship-title">Some friendships pick up exactly where they left off - like no time passed at all ✨</h2>
     <p class="friendship-msg">
-      This year gave us that back. And however busy things get, I'm genuinely glad it did. Here's to more conversations, more laughing at nothing, and many more birthdays like this one.
-      You deserve every bit of happiness this world has to offer, and more. 
+      This year gave us that back. And however busy things get, I'm genuinely glad it did.
+      Here's to more conversations, more laughing at nothing, and many more birthdays like this one.
+      You deserve every bit of happiness this world has to offer, and more.
       <span class="highlight">Happy Birthday, Hetvi!</span> May this year be your most beautiful one yet. 🥂
     </p>
   </article>
 
-  <!-- CANDLE BLOWING -->
-  <section class="candle-section reveal in">
+  <!-- ════════════════ CANDLE SECTION ════════════════ -->
+  <section class="candle-section" id="candleSection" aria-label="Birthday cake and candle">
     <div class="eyebrow">make it count</div>
+    <h2 class="candle-section-title">Make a Wish, Hetvi 🕯️</h2>
+
     <div class="cake-wrap">
-      <div class="candle" id="candle">
-        <div class="flame" id="flame"></div>
-        <div class="smoke"></div>
+
+      <!-- ── CAKE ── -->
+      <div class="cake-scene" role="img" aria-label="Birthday cake with candle">
+
+        <!-- Candle sits on top tier -->
+        <div class="candle-on-cake" id="candleOnCake">
+          <!-- Smoke puffs (appear after blow) -->
+          <div class="smoke-puff" id="smokePuff">
+            <span></span><span></span><span></span>
+          </div>
+          <!-- Flame -->
+          <div class="flame-outer" id="flameOuter">
+            <div class="flame-shape"></div>
+            <div class="flame-inner"></div>
+          </div>
+          <!-- Wick -->
+          <div class="candle-wick"></div>
+          <!-- Candle body -->
+          <div class="candle-body"></div>
+        </div>
+
+        <!-- Cake tiers -->
+        <div class="cake-body">
+          <!-- Top tier -->
+          <div class="cake-tier-top">
+            <div class="cake-name-strip">✦ Hetvi Rathod ✦</div>
+          </div>
+          <!-- Middle tier -->
+          <div class="cake-tier-mid">
+            <div class="cake-dots">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <!-- Bottom tier -->
+          <div class="cake-tier-bot">
+            <div class="cake-stars-dec">
+              <span>⭐</span><span>✨</span><span>🌟</span><span>✨</span><span>⭐</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plate -->
+        <div class="cake-plate"></div>
+      </div><!-- end .cake-scene -->
+
+      <!-- ── BLOW CONTROLS ── -->
+      <div class="blow-controls">
+        <button class="blow-btn" id="blowBtn" onclick="blowCandle()">
+          Blow out the candle 🕯️
+        </button>
+        <div class="blow-hint">
+          Tap the button - or blow into your mic, if you'd rather do it the real way 🎤
+        </div>
+        <div class="mic-indicator" id="micIndicator">
+          <span class="mic-dot"></span>
+          <span id="micStatus">Listening for your blow…</span>
+        </div>
       </div>
-      <button class="blow-btn" id="blowBtn">Blow out the candle 🕯️</button>
-      <div class="blow-hint">tap the button - or blow into your mic, if you'd rather do it the real way</div>
-      <div class="wish-reveal" id="wishReveal">
-        <p id="wishText">Wishing you a year that's kinder, brighter, and every bit as bold as you are. Happy Birthday, Hetvi. 🎂💛</p>
+
+      <!-- ── WISH REVEAL ── -->
+      <div class="wish-reveal" id="wishReveal" aria-live="polite">
+        <p id="wishText">
+          Wishing you a year that's kinder, brighter, and every bit as bold as you are.
+          Happy Birthday, Hetvi. 🎂💛
+        </p>
       </div>
-    </div>
+
+    </div><!-- end .cake-wrap -->
   </section>
 
   <!-- ── COUNTDOWN + SURPRISE ── -->
@@ -607,7 +1130,9 @@
 
 <!-- ════════════════ JAVASCRIPT ════════════════ -->
 <script>
-  /* ========== 1. AMBIENT PARTICLE BACKGROUND ========== */
+  /* ======================================================
+     1. AMBIENT PARTICLE BACKGROUND
+  ====================================================== */
   (function initParticles() {
     var canvas = document.getElementById('particleCanvas');
     var ctx    = canvas.getContext('2d');
@@ -657,13 +1182,14 @@
     window.addEventListener('resize', function() { resize(); spawnParticles(130); });
   })();
 
-  /* ========== 2. LIVE COUNTDOWN TIMER ========== */
+  /* ======================================================
+     2. LIVE COUNTDOWN TIMER
+  ====================================================== */
   (function tickCountdown() {
     var now      = new Date();
     var year     = now.getFullYear();
     var birthday = new Date(year, 6, 26, 0, 0, 0); // July = month index 6
 
-    // If July 26 already passed this year, count down to next year
     if (now > birthday) birthday.setFullYear(year + 1);
 
     var diff  = birthday - now;
@@ -695,7 +1221,9 @@
     setTimeout(tickCountdown, 1000);
   })();
 
-  /* ========== 3. CONFETTI ENGINE ========== */
+  /* ======================================================
+     3. CONFETTI ENGINE
+  ====================================================== */
   var cCanvas = document.getElementById('confettiCanvas');
   var cCtx    = cCanvas.getContext('2d');
   cCanvas.width  = window.innerWidth;
@@ -709,10 +1237,11 @@
   var confettiPieces  = [];
   var confettiRunning = false;
 
-  function launchConfetti() {
+  function launchConfetti(count) {
+    count = count || 180;
     var colors = ['#f5c842','#e879a8','#9b59d0','#5c3fd8','#ffffff','#ff6b6b','#4ecdc4','#ffe98a'];
     confettiPieces = [];
-    for (var i = 0; i < 180; i++) {
+    for (var i = 0; i < count; i++) {
       confettiPieces.push({
         x:     Math.random() * cCanvas.width,
         y:    -Math.random() * cCanvas.height * 0.5,
@@ -746,7 +1275,6 @@
       cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
       cCtx.restore();
     }
-    // Remove fully transparent pieces
     confettiPieces = confettiPieces.filter(function(p) { return p.alpha > 0; });
 
     if (confettiPieces.length > 0) {
@@ -757,12 +1285,13 @@
     }
   }
 
-  /* ========== 4. SURPRISE BUTTON & POPUP ========== */
+  /* ======================================================
+     4. SURPRISE BUTTON & POPUP
+  ====================================================== */
   function triggerSurprise() {
-    launchConfetti();
+    launchConfetti(180);
     document.getElementById('popupOverlay').classList.add('active');
     document.body.style.overflow = 'hidden';
-    // Focus the close button for accessibility
     setTimeout(function() {
       document.getElementById('popupCloseBtn').focus();
     }, 480);
@@ -774,17 +1303,140 @@
     document.getElementById('surpriseBtn').focus();
   }
 
-  // Close on backdrop click
   document.getElementById('popupOverlay').addEventListener('click', function(e) {
     if (e.target === this) closePopup();
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closePopup();
   });
 
-  /* ========== 5. SCROLL FADE-IN (Intersection Observer) ========== */
+  /* ======================================================
+     5. CANDLE BLOW LOGIC
+  ====================================================== */
+  var candleBlown    = false;
+  var micStream      = null;
+  var audioCtx       = null;
+  var analyserNode   = null;
+  var micListening   = false;
+
+  /* ── Core blow action ── */
+  function blowCandle() {
+    if (candleBlown) return;
+    candleBlown = true;
+
+    /* 1. Extinguish flame */
+    var flameEl = document.getElementById('flameOuter');
+    flameEl.classList.add('blown');
+
+    /* 2. Trigger smoke */
+    var smokeEl = document.getElementById('smokePuff');
+    smokeEl.classList.add('active');
+
+    /* 3. Disable button */
+    var btn = document.getElementById('blowBtn');
+    btn.disabled = true;
+    btn.textContent = '🕯️ Candle blown!';
+
+    /* 4. Hide mic indicator */
+    document.getElementById('micIndicator').classList.remove('visible');
+
+    /* 5. Stop mic if active */
+    if (micStream) {
+      micStream.getTracks().forEach(function(t) { t.stop(); });
+      micStream = null;
+    }
+    if (audioCtx) { try { audioCtx.close(); } catch(e){} audioCtx = null; }
+    micListening = false;
+
+    /* 6. Launch confetti burst! */
+    setTimeout(function() { launchConfetti(200); }, 300);
+
+    /* 7. Reveal wish card */
+    setTimeout(function() {
+      var wish = document.getElementById('wishReveal');
+      wish.classList.add('revealed');
+      wish.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 700);
+  }
+
+  /* ── Button tap ── */
+  document.getElementById('blowBtn').addEventListener('click', function() {
+    if (!candleBlown) blowCandle();
+  });
+
+  /* ── Microphone blow detection ── */
+  function startMicListening() {
+    if (candleBlown || micListening || !navigator.mediaDevices) return;
+
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+      .then(function(stream) {
+        micStream   = stream;
+        micListening = true;
+
+        audioCtx    = new (window.AudioContext || window.webkitAudioContext)();
+        var source  = audioCtx.createMediaStreamSource(stream);
+        analyserNode = audioCtx.createAnalyser();
+        analyserNode.fftSize = 512;
+        source.connect(analyserNode);
+
+        /* Show mic indicator */
+        document.getElementById('micIndicator').classList.add('visible');
+        document.getElementById('micStatus').textContent = 'Listening for your blow…';
+
+        /* Poll volume */
+        var dataArray   = new Uint8Array(analyserNode.frequencyBinCount);
+        var BLOW_THRESHOLD = 55;     /* 0-255 RMS threshold — tweak if needed */
+        var BLOW_FRAMES    = 6;      /* consecutive frames above threshold */
+        var frameCount     = 0;
+
+        function checkVolume() {
+          if (!micListening || candleBlown) return;
+          analyserNode.getByteFrequencyData(dataArray);
+
+          /* Compute RMS-like average over low-freq bins (blowing = mostly low freq) */
+          var sum = 0;
+          var bins = Math.floor(dataArray.length * 0.25); /* low quarter */
+          for (var i = 0; i < bins; i++) sum += dataArray[i];
+          var avg = sum / bins;
+
+          if (avg > BLOW_THRESHOLD) {
+            frameCount++;
+            if (frameCount >= BLOW_FRAMES) {
+              blowCandle();
+              return; /* stop polling */
+            }
+          } else {
+            frameCount = 0;
+          }
+
+          requestAnimationFrame(checkVolume);
+        }
+
+        checkVolume();
+      })
+      .catch(function(err) {
+        /* Mic denied or unavailable — silent fail, button still works */
+        document.getElementById('micStatus').textContent = 'Mic unavailable — use the button!';
+      });
+  }
+
+  /* Start mic listening once the user scrolls the candle section into view */
+  if ('IntersectionObserver' in window) {
+    var candleObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !micListening && !candleBlown) {
+          startMicListening();
+          candleObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    candleObserver.observe(document.getElementById('candleSection'));
+  }
+
+  /* ======================================================
+     6. SCROLL FADE-IN (Intersection Observer)
+  ====================================================== */
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
