@@ -301,7 +301,7 @@
       margin-bottom: 40px;
     }
 
-    /* ── CAKE SVG CONTAINER ── */
+    /* ── CAKE ── */
     .cake-wrap {
       display: flex;
       flex-direction: column;
@@ -316,7 +316,6 @@
       user-select: none;
     }
 
-    /* CSS-drawn birthday cake */
     .cake-body {
       position: relative;
       width: 260px;
@@ -347,7 +346,6 @@
       box-shadow: 0 -4px 12px rgba(232,121,168,0.3);
     }
 
-    /* frosting drips on top tier */
     .cake-tier-top::after {
       content: '';
       position: absolute;
@@ -358,7 +356,6 @@
       background-size: 160px 18px;
     }
 
-    /* Name strip on top tier */
     .cake-name-strip {
       position: absolute;
       top: 50%;
@@ -408,7 +405,6 @@
       background-size: 220px 18px;
     }
 
-    /* polka-dots decoration on middle tier */
     .cake-dots {
       position: absolute;
       top: 50%;
@@ -462,7 +458,6 @@
       background-size: 260px 20px;
     }
 
-    /* Stars / sparkle decorations on bottom tier */
     .cake-stars-dec {
       position: absolute;
       bottom: 18px;
@@ -473,7 +468,6 @@
       font-size: 1rem;
     }
 
-    /* Cake plate */
     .cake-plate {
       width: 290px;
       height: 18px;
@@ -486,7 +480,7 @@
     /* ── CANDLE on cake ── */
     .candle-on-cake {
       position: absolute;
-      top: -70px;               /* sits on top tier */
+      top: -70px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -495,7 +489,6 @@
       z-index: 10;
     }
 
-    /* Flame wrapper (outer glow) */
     .flame-outer {
       position: relative;
       width: 28px;
@@ -531,7 +524,6 @@
       animation: flicker 0.22s ease-in-out infinite alternate-reverse;
     }
 
-    /* Smoke puffs after blow */
     .smoke-puff {
       position: absolute;
       bottom: 28px;
@@ -562,7 +554,6 @@
       100% { opacity: 0;   transform: translateX(-50%) scale(2.5) translateY(-40px); }
     }
 
-    /* Candle body */
     .candle-body {
       width: 14px;
       height: 44px;
@@ -572,7 +563,6 @@
       box-shadow: 0 4px 12px rgba(245,200,66,0.4), inset -2px 0 4px rgba(0,0,0,0.1);
     }
 
-    /* melted wax drip */
     .candle-body::after {
       content: '';
       position: absolute;
@@ -584,7 +574,6 @@
       transform: rotate(8deg);
     }
 
-    /* Candle wick */
     .candle-wick {
       width: 2px;
       height: 8px;
@@ -601,6 +590,15 @@
       margin-top: 16px;
     }
 
+    /* Row that holds both action buttons side-by-side */
+    .action-btns-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+    }
+
     .blow-btn {
       display: inline-flex;
       align-items: center;
@@ -609,7 +607,7 @@
       background-size: 200% 200%;
       border: none;
       border-radius: 50px;
-      padding: 14px 36px;
+      padding: 14px 28px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1rem;
       font-weight: 700;
@@ -618,6 +616,7 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s;
       box-shadow: 0 8px 28px rgba(232,121,168,0.45);
       animation: gradient-shift 3s ease infinite;
+      white-space: nowrap;
     }
 
     .blow-btn:hover {
@@ -626,17 +625,87 @@
     }
 
     .blow-btn:disabled {
-      opacity: 0.4;
+      opacity: 0.45;
       cursor: default;
       transform: none;
+      animation: none;
+    }
+
+    /* ── MUSIC BUTTON ── */
+    .birthday-music-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 50px;
+      padding: 14px 28px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s;
+      box-shadow: 0 8px 28px rgba(31,38,135,0.2);
+      white-space: nowrap;
+    }
+
+    .birthday-music-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(255,215,0,0.3);
+    }
+
+    /* Pulsing gold ring when playing */
+    .birthday-music-btn.playing {
+      border-color: var(--gold);
+      background: rgba(245,200,66,0.12);
+      animation: musicPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse {
+      0%   { box-shadow: 0 0 0 0   rgba(245,200,66,0.55); }
+      70%  { box-shadow: 0 0 0 16px rgba(245,200,66,0);   }
+      100% { box-shadow: 0 0 0 0   rgba(245,200,66,0);    }
+    }
+
+    /* Equaliser bars inside the music button (visible when playing) */
+    .eq-bars {
+      display: none;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+    }
+
+    .birthday-music-btn.playing .eq-bars { display: flex; }
+    .birthday-music-btn.playing .music-icon-static { display: none; }
+
+    .eq-bars span {
+      display: block;
+      width: 3px;
+      border-radius: 2px;
+      background: var(--gold);
+    }
+
+    .eq-bars span:nth-child(1) { height: 6px;  animation: eq 0.6s 0.0s ease-in-out infinite alternate; }
+    .eq-bars span:nth-child(2) { height: 12px; animation: eq 0.6s 0.15s ease-in-out infinite alternate; }
+    .eq-bars span:nth-child(3) { height: 8px;  animation: eq 0.6s 0.3s ease-in-out infinite alternate; }
+    .eq-bars span:nth-child(4) { height: 14px; animation: eq 0.6s 0.1s ease-in-out infinite alternate; }
+
+    @keyframes eq {
+      from { transform: scaleY(0.35); }
+      to   { transform: scaleY(1); }
     }
 
     .blow-hint {
       font-size: 0.82rem;
       color: var(--text-soft);
       font-style: italic;
-      max-width: 320px;
-      line-height: 1.5;
+      max-width: 340px;
+      line-height: 1.55;
+      text-align: center;
     }
 
     /* Mic status indicator */
@@ -916,30 +985,35 @@
     }
 
     @keyframes flicker {
-      0%   { transform: translateX(-50%) scaleX(1)   scaleY(1)   rotate(-1deg); }
+      0%   { transform: translateX(-50%) scaleX(1)    scaleY(1)    rotate(-1deg); }
       100% { transform: translateX(-50%) scaleX(0.88) scaleY(1.06) rotate(1deg); }
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 580px) {
-      .glass-card     { padding: 28px 22px; }
-      .candle-section { padding: 40px 20px 36px; }
-      .popup-card     { padding: 36px 24px; }
-      .countdown-box  { min-width: 66px; padding: 12px 14px; }
-      .countdown-num  { font-size: 1.7rem; }
-      .cake-scene     { width: 220px; }
-      .cake-tier-top  { width: 130px; }
-      .cake-tier-mid  { width: 180px; }
-      .cake-tier-bot  { width: 220px; }
-      .cake-plate     { width: 245px; }
+      .glass-card       { padding: 28px 22px; }
+      .candle-section   { padding: 40px 20px 36px; }
+      .popup-card       { padding: 36px 24px; }
+      .countdown-box    { min-width: 66px; padding: 12px 14px; }
+      .countdown-num    { font-size: 1.7rem; }
+      .cake-scene       { width: 220px; }
+      .cake-tier-top    { width: 130px; }
+      .cake-tier-mid    { width: 180px; }
+      .cake-tier-bot    { width: 220px; }
+      .cake-plate       { width: 245px; }
+      .action-btns-row  { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
+<!-- Birthday Song Audio (hidden) -->
+<!-- 🎵 Place your song.mp3 in the same folder as index.html in your GitHub repo -->
+<audio id="birthdaySong" src="song.mp3" loop preload="none"></audio>
+
 <!-- Ambient Particle Background -->
 <canvas id="particleCanvas" aria-hidden="true"></canvas>
-<!-- Confetti Canvas (shown on surprise / candle blow) -->
+<!-- Confetti Canvas -->
 <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
 <!-- ════════════════ BIRTHDAY SURPRISE POPUP ════════════════ -->
@@ -983,7 +1057,7 @@
 
   <!-- ── CAREER MILESTONE CARD ── -->
   <article class="glass-card career-card" aria-label="Career milestone section">
-
+    
     <div class="section-label" aria-hidden="true">🚀 Career Milestone</div>
     <h2 class="career-title">Congratulations on Your New Role! 🎊</h2>
     <div class="career-role-badge">
@@ -1005,7 +1079,7 @@
   <!-- ── FRIENDSHIP MESSAGE CARD ── -->
   <article class="glass-card friendship-card" aria-label="Friendship message">
     <div class="section-label" aria-hidden="true">A Special Friendship</div>
-    <h2 class="friendship-title">Some friendships pick up exactly where they left off - like no time passed at all ✨</h2>
+    <h2 class="friendship-title">Some friendships pick up exactly where they left off — like no time passed at all ✨</h2>
     <p class="friendship-msg">
       This year gave us that back. And however busy things get, I'm genuinely glad it did.
       Here's to more conversations, more laughing at nothing, and many more birthdays like this one.
@@ -1014,8 +1088,8 @@
     </p>
   </article>
 
-  <!-- ════════════════ CANDLE SECTION ════════════════ -->
-  <section class="candle-section" id="candleSection" aria-label="Birthday cake and candle">
+  <!-- ════════════════ CANDLE + MUSIC SECTION ════════════════ -->
+  <section class="candle-section" id="candleSection" aria-label="Birthday cake, candle and music">
     <div class="eyebrow">make it count</div>
     <h2 class="candle-section-title">Make a Wish, Hetvi 🕯️</h2>
 
@@ -1024,36 +1098,29 @@
       <!-- ── CAKE ── -->
       <div class="cake-scene" role="img" aria-label="Birthday cake with candle">
 
-        <!-- Candle sits on top tier -->
+        <!-- Candle -->
         <div class="candle-on-cake" id="candleOnCake">
-          <!-- Smoke puffs (appear after blow) -->
           <div class="smoke-puff" id="smokePuff">
             <span></span><span></span><span></span>
           </div>
-          <!-- Flame -->
           <div class="flame-outer" id="flameOuter">
             <div class="flame-shape"></div>
             <div class="flame-inner"></div>
           </div>
-          <!-- Wick -->
           <div class="candle-wick"></div>
-          <!-- Candle body -->
           <div class="candle-body"></div>
         </div>
 
         <!-- Cake tiers -->
         <div class="cake-body">
-          <!-- Top tier -->
           <div class="cake-tier-top">
             <div class="cake-name-strip">✦ Hetvi Rathod ✦</div>
           </div>
-          <!-- Middle tier -->
           <div class="cake-tier-mid">
             <div class="cake-dots">
               <span></span><span></span><span></span><span></span><span></span>
             </div>
           </div>
-          <!-- Bottom tier -->
           <div class="cake-tier-bot">
             <div class="cake-stars-dec">
               <span>⭐</span><span>✨</span><span>🌟</span><span>✨</span><span>⭐</span>
@@ -1061,18 +1128,38 @@
           </div>
         </div>
 
-        <!-- Plate -->
         <div class="cake-plate"></div>
       </div><!-- end .cake-scene -->
 
-      <!-- ── BLOW CONTROLS ── -->
+      <!-- ── ACTION BUTTONS ROW ── -->
       <div class="blow-controls">
-        <button class="blow-btn" id="blowBtn" onclick="blowCandle()">
-          Blow out the candle 🕯️
-        </button>
+        <div class="action-btns-row">
+
+          <!-- Blow candle button -->
+          <button class="blow-btn" id="blowBtn" aria-label="Blow out the candle">
+            Blow out the candle 🕯️
+          </button>
+
+          <!-- Music play/pause button -->
+          <button class="birthday-music-btn" id="musicBtn"
+                  onclick="toggleMusic()"
+                  aria-label="Play or pause birthday song">
+            <!-- Equaliser bars (shown when playing) -->
+            <span class="eq-bars" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </span>
+            <!-- Static music note (shown when paused) -->
+            <span class="music-icon-static" aria-hidden="true">🎵</span>
+            <span id="musicText">Play Birthday Song</span>
+          </button>
+
+        </div><!-- end .action-btns-row -->
+
         <div class="blow-hint">
-          Tap the button - or blow into your mic, if you'd rather do it the real way 🎤
+          Blow out the candle by tapping the button or blowing into your mic 🎤<br>
+          Then play the birthday song to complete the celebration 🎶
         </div>
+
         <div class="mic-indicator" id="micIndicator">
           <span class="mic-dot"></span>
           <span id="micStatus">Listening for your blow…</span>
@@ -1188,7 +1275,7 @@
   (function tickCountdown() {
     var now      = new Date();
     var year     = now.getFullYear();
-    var birthday = new Date(year, 6, 26, 0, 0, 0); // July = month index 6
+    var birthday = new Date(year, 6, 26, 0, 0, 0);
 
     if (now > birthday) birthday.setFullYear(year + 1);
 
@@ -1312,36 +1399,60 @@
   });
 
   /* ======================================================
-     5. CANDLE BLOW LOGIC
+     5. BIRTHDAY MUSIC TOGGLE
   ====================================================== */
-  var candleBlown    = false;
-  var micStream      = null;
-  var audioCtx       = null;
-  var analyserNode   = null;
-  var micListening   = false;
+  function toggleMusic() {
+    var audio   = document.getElementById('birthdaySong');
+    var btn     = document.getElementById('musicBtn');
+    var txtEl   = document.getElementById('musicText');
 
-  /* ── Core blow action ── */
+    if (audio.paused) {
+      /* Resume AudioContext if suspended (required by some browsers) */
+      audio.play().then(function() {
+        txtEl.textContent = 'Pause Song';
+        btn.classList.add('playing');
+        btn.setAttribute('aria-label', 'Pause birthday song');
+      }).catch(function(err) {
+        /* Autoplay blocked — notify user */
+        txtEl.textContent = 'Tap again to play 🎵';
+        console.warn('Audio play blocked:', err);
+      });
+    } else {
+      audio.pause();
+      txtEl.textContent = 'Play Birthday Song';
+      btn.classList.remove('playing');
+      btn.setAttribute('aria-label', 'Play birthday song');
+    }
+  }
+
+  /* ======================================================
+     6. CANDLE BLOW LOGIC
+  ====================================================== */
+  var candleBlown  = false;
+  var micStream    = null;
+  var audioCtx     = null;
+  var analyserNode = null;
+  var micListening = false;
+
   function blowCandle() {
     if (candleBlown) return;
     candleBlown = true;
 
-    /* 1. Extinguish flame */
-    var flameEl = document.getElementById('flameOuter');
-    flameEl.classList.add('blown');
+    /* Extinguish flame */
+    document.getElementById('flameOuter').classList.add('blown');
 
-    /* 2. Trigger smoke */
-    var smokeEl = document.getElementById('smokePuff');
-    smokeEl.classList.add('active');
+    /* Smoke puffs */
+    document.getElementById('smokePuff').classList.add('active');
 
-    /* 3. Disable button */
+    /* Disable blow button */
     var btn = document.getElementById('blowBtn');
     btn.disabled = true;
-    btn.textContent = '🕯️ Candle blown!';
+    btn.innerHTML = '🕯️ Candle blown!';
 
-    /* 4. Hide mic indicator */
+    /* Hide mic indicator */
     document.getElementById('micIndicator').classList.remove('visible');
 
-    /* 5. Stop mic if active */
+    /* Stop mic */
     if (micStream) {
       micStream.getTracks().forEach(function(t) { t.stop(); });
       micStream = null;
@@ -1349,10 +1460,10 @@
     if (audioCtx) { try { audioCtx.close(); } catch(e){} audioCtx = null; }
     micListening = false;
 
-    /* 6. Launch confetti burst! */
+    /* Confetti burst */
     setTimeout(function() { launchConfetti(200); }, 300);
 
-    /* 7. Reveal wish card */
+    /* Reveal wish card */
     setTimeout(function() {
       var wish = document.getElementById('wishReveal');
       wish.classList.add('revealed');
@@ -1360,68 +1471,60 @@
     }, 700);
   }
 
-  /* ── Button tap ── */
+  /* Blow button click */
   document.getElementById('blowBtn').addEventListener('click', function() {
     if (!candleBlown) blowCandle();
   });
 
-  /* ── Microphone blow detection ── */
+  /* Microphone blow detection */
   function startMicListening() {
     if (candleBlown || micListening || !navigator.mediaDevices) return;
 
     navigator.mediaDevices.getUserMedia({ audio: true, video: false })
       .then(function(stream) {
-        micStream   = stream;
+        micStream    = stream;
         micListening = true;
 
-        audioCtx    = new (window.AudioContext || window.webkitAudioContext)();
-        var source  = audioCtx.createMediaStreamSource(stream);
+        audioCtx     = new (window.AudioContext || window.webkitAudioContext)();
+        var source   = audioCtx.createMediaStreamSource(stream);
         analyserNode = audioCtx.createAnalyser();
         analyserNode.fftSize = 512;
         source.connect(analyserNode);
 
-        /* Show mic indicator */
         document.getElementById('micIndicator').classList.add('visible');
         document.getElementById('micStatus').textContent = 'Listening for your blow…';
 
-        /* Poll volume */
-        var dataArray   = new Uint8Array(analyserNode.frequencyBinCount);
-        var BLOW_THRESHOLD = 55;     /* 0-255 RMS threshold — tweak if needed */
-        var BLOW_FRAMES    = 6;      /* consecutive frames above threshold */
+        var dataArray      = new Uint8Array(analyserNode.frequencyBinCount);
+        var BLOW_THRESHOLD = 55;
+        var BLOW_FRAMES    = 6;
         var frameCount     = 0;
 
         function checkVolume() {
           if (!micListening || candleBlown) return;
           analyserNode.getByteFrequencyData(dataArray);
 
-          /* Compute RMS-like average over low-freq bins (blowing = mostly low freq) */
-          var sum = 0;
-          var bins = Math.floor(dataArray.length * 0.25); /* low quarter */
+          var sum  = 0;
+          var bins = Math.floor(dataArray.length * 0.25);
           for (var i = 0; i < bins; i++) sum += dataArray[i];
           var avg = sum / bins;
 
           if (avg > BLOW_THRESHOLD) {
             frameCount++;
-            if (frameCount >= BLOW_FRAMES) {
-              blowCandle();
-              return; /* stop polling */
-            }
+            if (frameCount >= BLOW_FRAMES) { blowCandle(); return; }
           } else {
             frameCount = 0;
           }
-
           requestAnimationFrame(checkVolume);
         }
 
         checkVolume();
       })
-      .catch(function(err) {
-        /* Mic denied or unavailable — silent fail, button still works */
+      .catch(function() {
         document.getElementById('micStatus').textContent = 'Mic unavailable — use the button!';
       });
   }
 
-  /* Start mic listening once the user scrolls the candle section into view */
+  /* Start mic when cake section scrolls into view */
   if ('IntersectionObserver' in window) {
     var candleObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -1435,7 +1538,7 @@
   }
 
   /* ======================================================
-     6. SCROLL FADE-IN (Intersection Observer)
+     7. SCROLL FADE-IN
   ====================================================== */
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
